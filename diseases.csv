@@ -1,12 +1,13 @@
-Keyword,Reply_EN,Reply_KH
-dengue,Dengue is a viral infection spread by mosquitoes.,ឌិនហ្គី គឺជាការឆ្លងវីរុសដែលផ្សាយតាមពស់កណ្តុរ។
-malaria,Malaria is caused by parasites transmitted by mosquitoes.,ជំងឺមាលារីយ៉ា បង្កឡើងដោយរ៉ាស៊ីតផ្ញើតាមពស់កណ្តុរ។
-cancer,Cancer is the abnormal growth of cells in the body.,មហារីក គឺជាការរីកចម្រើនមិនធម្មតារបស់កោសិកា។
-diabetes,Diabetes is a disease that affects how your body uses blood sugar.,ជំងឺទឹកនោមផ្អែម ជំងឺដែលប៉ះពាល់ដល់ការប្រើប្រាស់ស្ករនៅក្នុងឈាម។
-flu,Influenza (flu) is a contagious respiratory illness caused by viruses.,ជំងឺផ្លួ (ហ្វ្លូ) គឺជាជំងឺផ្លូវដង្ហើមឆ្លងតាមវីរុស។
-covid-19,COVID-19 is caused by the SARS-CoV-2 virus and affects the respiratory system.,COVID-19 បង្កឡើងដោយវីរុស SARS-CoV-2 និងប៉ះពាល់ដល់ប្រព័ន្ធដង្ហើម។
-tuberculosis,TB is a bacterial infection that mainly affects the lungs.,ជំងឺទុបឺរគុលូស៊ីស គឺជាការឆ្លងមេរោគដែលប៉ះពាល់ដល់សួតជាធំជាងគេ។
-heart disease,Heart disease includes conditions that affect the heart’s function.,ជំងឺបេះដូង មានលក្ខខណ្ឌដែលប៉ះពាល់ដល់សកម្មភាពបេះដូង។
-stroke,Stroke occurs when blood flow to the brain is blocked or reduced.,ការធ្លាក់ផ្លូវឈាមទៅខួរក្បាលកើតឡើងពេលឈាមរលាកឬបាត់បង់។
-hypertension,High blood pressure is a condition where the force of blood is too high.,សំពាធឈាមខ្ពស់ គឺជាស្ថានភាពដែលសំពាធឈាមខ្ពស់ពេក។
-hepatitis,Hepatitis is inflammation of the liver caused by viruses.,ជំងឺតាកោសិកា (hepatitis) គឺជាការឈឺសាច់ស៊េរីកដោយវីរុស។
+Keyword,Reply_EN,Reply_KH,Symptoms_EN,Symptoms_KH,Prevention_EN,Prevention_KH
+dengue,Dengue is a viral infection spread by mosquitoes.,ឌិនហ្គី គឺជាការឆ្លងវីរុសដោយពស់កណ្តុរ។,Fever, headache, rash,ក្តៅកាយ, ក្បាលឈឺ, ផ្តាសាយ,Use mosquito repellent, avoid water,ប្រើប្រាស់សារធាតុប្រឆាំងពស់, ចៀសវាងទឹកស្អាត
+malaria,Malaria is caused by parasites transmitted by mosquitoes.,ជំងឺមាលារីយ៉ា បង្កឡើងដោយរ៉ាស៊ីតផ្ញើតាមពស់កណ្តុរ។,Fever, chills, sweating,ក្ដៅកាយ, សម្ពាធ, ញើសជក់,Mosquito nets, prevent bites,ប្រើប៉ោង, ចៀសវាងការចាប់ពស់
+cancer,Cancer is abnormal growth of cells in the body.,មហារីក គឺជាការរីកចម្រើនមិនធម្មតារបស់កោសិកា។,Lumps, weight loss, fatigue,គល់កកើត, ស្ត្រេស, ខ្សោយ,Regular checkups, healthy lifestyle,ពិនិត្យសុខភាពទៀងទាត់, រស់នៅសុខភាពល្អ
+diabetes,Diabetes affects how your body uses blood sugar.,ជំងឺទឹកនោមផ្អែម ប៉ះពាល់ដល់ស្ករឈាមក្នុងរាងកាយ។,Frequent urination, thirst, fatigue,ញើសទឹកនោមច្រើន, ពិសារទឹក, ខ្សោយ,Healthy diet, exercise, monitor sugar,អាហារសមរម្យ, ការអោយហាត់ប្រាណ, តាមដានស្ករឈាម
+flu,Influenza (flu) is a contagious respiratory illness caused by viruses.,ជំងឺផ្លួ (ហ្វ្លូ) ជាជំងឺផ្លូវដង្ហើមឆ្លងតាមវីរុស។,Fever, cough, sore throat,ក្ដៅកាយ, ក្អក់, ឈឺក garganta,Wash hands, avoid close contact,លាងដៃ, ចៀសវាងការប៉ះពាល់
+covid-19,COVID-19 affects the respiratory system, caused by SARS-CoV-2.,COVID-19 ប៉ះពាល់ប្រព័ន្ធដង្ហើម បង្កឡើងដោយវីរុស SARS-CoV-2។,Fever, cough, difficulty breathing,ក្ដៅកាយ, ក្អក់, ដង្ហើមមិនសូវល្អ,Masks, social distancing, vaccination,ពាក់ម៉ាស់, ចៀសវាងការចងកស្ដី, វ៉ាក់សាំង
+tuberculosis,TB is a bacterial infection mainly affecting the lungs.,ជំងឺទុបឺរគុលូស៊ីស ប៉ះពាល់សួត。,Cough, weight loss, night sweats,ក្អក់, ខ្លាញ់ស្រាល, ញើសពេលយប់,Vaccination, cover mouth when coughing,វ៉ាក់សាំង, គ្របដៃពេលក្អក់
+heart disease,Heart disease includes conditions affecting heart function.,ជំងឺបេះដូង ប៉ះពាល់សកម្មភាពបេះដូង。,Chest pain, fatigue, shortness of breath,ឈឺចងដៃ, ខ្សោយ, ដង្ហើមខ្លី,Healthy diet, exercise, regular checkups,អាហារសមរម្យ, ហាត់ប្រាណ, ពិនិត្យសុខភាពទៀងទាត់
+stroke,Stroke occurs when blood flow to the brain is blocked or reduced.,ការធ្លាក់ផ្លូវឈាមទៅខួរក្បាល កើតឡើងពេលឈាមរលាកឬបាត់បង់។,Weakness, confusion, trouble speaking,ខ្សោយ, ស្មារតីង, ពិបាកនិយាយ,Control blood pressure, healthy lifestyle,ត្រួតសំពាធ, រស់នៅសុខភាពល្អ
+hypertension,High blood pressure is when the force of blood is too high.,សំពាធឈាមខ្ពស់ សំពាធឈាមខ្ពស់ពេក。,Headache, dizziness, nosebleeds,ក្បាលឈឺ, វិលស្ទាក់, ឈាមចេញពីច្រមុះ,Exercise, low-salt diet, monitor pressure,ហាត់ប្រាណ, បរិភោគអាហារតិចអំបិល, ត្រួតសំពាធ
+hepatitis,Hepatitis is inflammation of the liver caused by viruses.,ជំងឺតាកោសិកា (hepatitis) ជាឧប្បត្តិការធ្ងន់ផ្អែកវីរុស។,Fatigue, jaundice, nausea,ខ្សោយ, លាកសសៃ, ឈឺច្រមុះ,Vaccination, avoid alcohol,វ៉ាក់សាំង, ចៀសវាងស្រា
+
