@@ -3,12 +3,15 @@ import pandas as pd
 from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 
-TOKEN = os.environ.get("TOKEN")
+# 🟢 Get bot token from environment variable
+TOKEN = os.environ.get("8496550115:AAG1VqdWMTU-t_oQ0etBzDkVFq5DJAZmEjY")
+if TOKEN is None:
+    raise ValueError("Bot token is missing! Add it as an environment variable.")
 
 # 🟢 Load CSV
 data = pd.read_csv("diseases.csv")
 
-# 🟢 Prepare response dictionary
+# 🟢 Prepare responses dictionary
 responses = {}
 for _, row in data.iterrows():
     responses[row["Keyword"].lower()] = {
@@ -29,17 +32,18 @@ disease_buttons_EN = [[KeyboardButton(keyword)] for keyword in data['Keyword']]
 if 'Keyword_KH' in data.columns:
     disease_buttons_KH = [[KeyboardButton(keyword)] for keyword in data['Keyword_KH']]
 else:
+    # If no Khmer keyword, reuse English for buttons
     disease_buttons_KH = disease_buttons_EN
 
-# 🟢 User language storage
+# 🟢 Store user language
 user_language = {}
 
-# 🟢 Start command
+# 🟢 /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [["🇬🇧 English", "🇰🇭 ខ្មែរ"]]
+    keyboard = [[KeyboardButton("🇬🇧 English"), KeyboardButton("🇰🇭 ខ្មែរ")]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text(
-        "Welcome to Health Information Bot 🏥\nPlease choose your language:",
+        "Welcome to Health Information Bot 🏥\nPlease choose your language / សូមជ្រើសរើសភាសា:",
         reply_markup=reply_markup,
     )
 
@@ -51,21 +55,19 @@ async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # --- Language selection ---
     if "english" in text:
         user_language[user_id] = "EN"
-        keyboard = [disease_buttons_EN[i:i+3] for i in range(0, len(disease_buttons_EN), 3)] + [["ℹ️ About"]]
+        # Split buttons 3 per row
+        keyboard = [disease_buttons_EN[i:i+3] for i in range(0, len(disease_buttons_EN), 3)]
+        keyboard.append([KeyboardButton("ℹ️ About")])
         reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
-        await update.message.reply_text(
-            "Language set to English. Choose a disease:",
-            reply_markup=reply_markup
-        )
+        await update.message.reply_text("Language set to English. Choose a disease:", reply_markup=reply_markup)
         return
+
     if "ខ្មែរ" in text:
         user_language[user_id] = "KH"
-        keyboard = [disease_buttons_KH[i:i+3] for i in range(0, len(disease_buttons_KH), 3)] + [["ℹ️ អំពី"]]
+        keyboard = [disease_buttons_KH[i:i+3] for i in range(0, len(disease_buttons_KH), 3)]
+        keyboard.append([KeyboardButton("ℹ️ អំពី")])
         reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
-        await update.message.reply_text(
-            "បានកំណត់ភាសាខ្មែរ។ សូមជ្រើសរើសជំងឺ:",
-            reply_markup=reply_markup
-        )
+        await update.message.reply_text("បានកំណត់ភាសាខ្មែរ។ សូមជ្រើសរើសជំងឺ:", reply_markup=reply_markup)
         return
 
     # --- Determine language ---
