@@ -49,20 +49,21 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # 🟢 Handle messages
 async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = update.message.text.lower()
+    text = update.message.text.strip()
     user_id = update.message.from_user.id
 
+    print(f"Received message: '{text}'")  # Debug: see exactly what Telegram sends
+
     # --- Language selection ---
-    if "english" in text:
+    if text == "🇬🇧 English":
         user_language[user_id] = "EN"
-        # Split buttons 3 per row
         keyboard = [disease_buttons_EN[i:i+3] for i in range(0, len(disease_buttons_EN), 3)]
         keyboard.append([KeyboardButton("ℹ️ About")])
         reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
         await update.message.reply_text("Language set to English. Choose a disease:", reply_markup=reply_markup)
         return
 
-    if "ខ្មែរ" in text:
+    if text == "🇰🇭 ខ្មែរ":
         user_language[user_id] = "KH"
         keyboard = [disease_buttons_KH[i:i+3] for i in range(0, len(disease_buttons_KH), 3)]
         keyboard.append([KeyboardButton("ℹ️ អំពី")])
@@ -74,7 +75,7 @@ async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lang = user_language.get(user_id, "EN")
 
     # --- About section ---
-    if "about" in text or "អំពី" in text:
+    if "about" in text.lower() or "អំពី" in text:
         if lang == "EN":
             await update.message.reply_text(
                 "This NGO Health Bot provides educational info about common diseases, symptoms, and prevention."
@@ -87,7 +88,7 @@ async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # --- Disease search ---
     for keyword in responses:
-        if keyword in text:
+        if keyword in text.lower():
             disease = responses[keyword][lang]
             reply_text = f"💉 {disease['info']}\n\n🩺 Symptoms: {disease['symptoms']}\n🛡️ Prevention: {disease['prevention']}"
             await update.message.reply_text(reply_text)
