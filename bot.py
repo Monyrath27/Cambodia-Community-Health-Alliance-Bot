@@ -1,33 +1,95 @@
+import os
 import pandas as pd
-from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+from telegram import Update, ReplyKeyboardMarkup
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    MessageHandler,
+    ContextTypes,
+    filters,
+)
 
-TOKEN = "8496550115:AAG1VqdWMTU-t_oQ0etBzDkVFq5DJAZmEjY"
+TOKEN = os.environ.get("TOKEN")
 
-# Load CSV file
+# Load CSV
 data = pd.read_csv("diseases.csv")
 
 # Convert to dictionary
 responses = {}
-for index, row in data.iterrows():
-    keyword = row["Keyword"].lower()
-    reply = f"{row['Reply_EN']}\n\n{row['Reply_KH']}"
-    responses[keyword] = reply
+for _, row in data.iterrows():
+    responses[row["Keyword"].lower()] = {
+        "EN": row["Reply_EN"],
+        "KH": row["Reply_KH"],
+    }
 
+# Store user language preference
+user_language = {}
+
+# Start command
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [["🇬🇧 English", "🇰🇭 ខ្មែរ"]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
+    await update.message.reply_text(
+        "Welcome to Health Information Bot 🏥\nPlease choose your language:",
+        reply_markup=reply_markup,
+    )
+
+# Handle messages
 async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_message = update.message.text.lower()
+    text = update.message.text.lower()
+    user_id = update.message.from_user.id
+
+    # Language selection
+    if "english" in text:
+        user_language[user_id] = "EN"
+        keyboard = [["📋 Disease List"], ["ℹ️ About"]]
+        await update.message.reply_text(
+            "Language set to English.",
+            reply_markup=ReplyKeyboardMarkup(keyboard, resize_keyboard=True),
+        )
+        return
+
+    if "ខ្មែរ" in text:
+        user_language[user_id] = "KH"
+        keyboard = [["📋 បញ្ជីជំងឺ"], ["ℹ️ អំពី"]]
+        await update.message.reply_text(
+            "បានកំណត់ភាសាខ្មែរ។",
+            reply_markup=ReplyKeyboardMarkup(keyboard, resize_keyboard=True),
+        )
+        return
+
+    # Disease search
+    lang = user_language.get(user_id, "EN")
 
     for keyword in responses:
-        if keyword in user_message:
-            await update.message.reply_text(responses[keyword])
+        if keyword in text:
+            await update.message.reply_text(responses[keyword][lang])
             return
 
-    await update.message.reply_text("Sorry, disease not found. Please try another keyword.")
+    # About
+    if "about" in text or "អំពី" in text:
+        if lang == "EN":
+            await update.message.reply_text(
+                "This NGO Health Bot provides basic disease information for educational purposes."
+            )
+        else:
+            await update.message.reply_text(
+                "បុត្រាអង្គការសុខភាពនេះផ្តល់ព័ត៌មានជំងឺសម្រាប់ការអប់រំ។"
+            )
+        return
+
+    # Default reply
+    if lang == "EN":
+        await update.message.reply_text(
+            "Please type a disease name (e.g., dengue, malaria)."
+        )
+    else:
+        await update.message.reply_text(
+            "សូមវាយបញ្ចូលឈ្មោះជំងឺ (ឧ. dengue, malaria)."
+        )
 
 app = ApplicationBuilder().token(TOKEN).build()
+app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, reply))
 
-import os
-
-PORT = int(os.environ.get("PORT", 10000))
 app.run_polling()
