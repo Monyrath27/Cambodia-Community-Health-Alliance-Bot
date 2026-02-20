@@ -4,7 +4,7 @@ from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 
 # 🟢 Get bot token from environment variable
-TOKEN = os.environ.get("8496550115:AAG1VqdWMTU-t_oQ0etBzDkVFq5DJAZmEjY")
+TOKEN = os.environ.get("TOKEN")
 if TOKEN is None:
     raise ValueError("Bot token is missing! Add it as an environment variable.")
 
