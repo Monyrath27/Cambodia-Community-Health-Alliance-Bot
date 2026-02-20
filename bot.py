@@ -9,7 +9,7 @@ from telegram.ext import (
     filters,
 )
 
-TOKEN = os.environ.get("TOKEN")
+TOKEN = os.environ.get("8496550115:AAG1VqdWMTU-t_oQ0etBzDkVFq5DJAZmEjY")
 
 # Load CSV
 data = pd.read_csv("diseases.csv")
